@@ -1,5 +1,3 @@
-import type { MetaFunction } from "@remix-run/node";
-
 import { Avatar } from '@/components/ui//avatar'
 import { Badge } from '@/components/ui//badge'
 import { Divider } from '@/components/ui//divider'
@@ -7,9 +5,8 @@ import { Heading, Subheading } from '@/components/ui//heading'
 import { Select } from '@/components/ui//select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui//table'
 import { getRecentOrders } from '@/data'
-import { useLoaderData } from "@remix-run/react";
 
-function Stat({ title, value, change }: { title: string; value: string; change: string }) {
+export function Stat({ title, value, change }: { title: string; value: string; change: string }) {
   return (
     <div>
       <Divider />
@@ -23,8 +20,8 @@ function Stat({ title, value, change }: { title: string; value: string; change: 
   )
 }
 
-export default function Index() {
-  const { orders } = useLoaderData<typeof clientLoader>()
+export default async function Home() {
+  let orders = await getRecentOrders()
 
   return (
     <>
@@ -41,20 +38,20 @@ export default function Index() {
         </div>
       </div>
       <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat title="Total completions" value="2,520" change="+4.5%" />
-        <Stat title="Average time spent" value="12m 30s" change="-0.5%" />
-        <Stat title="Surveys created" value="5,888" change="+4.5%" />
-        <Stat title="Dropped surveys" value="1,200" change="+21.2%" />
+        <Stat title="Total revenue" value="$2.6M" change="+4.5%" />
+        <Stat title="Average order value" value="$455" change="-0.5%" />
+        <Stat title="Tickets sold" value="5,888" change="+4.5%" />
+        <Stat title="Pageviews" value="823,067" change="+21.2%" />
       </div>
-      <Subheading className="mt-14">Recent completions</Subheading>
+      <Subheading className="mt-14">Recent orders</Subheading>
       <Table className="mt-4 [--gutter:theme(spacing.6)] lg:[--gutter:theme(spacing.10)]">
         <TableHead>
           <TableRow>
-            <TableHeader>Survey</TableHeader>
-            <TableHeader>Expert</TableHeader>
+            <TableHeader>Order number</TableHeader>
+            <TableHeader>Purchase date</TableHeader>
+            <TableHeader>Customer</TableHeader>
             <TableHeader>Event</TableHeader>
-            <TableHeader>Completion date</TableHeader>
-            <TableHeader className="text-right">Time spent</TableHeader>
+            <TableHeader className="text-right">Amount</TableHeader>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -77,16 +74,3 @@ export default function Index() {
     </>
   )
 }
-
-export const clientLoader = async () => {
-  return {
-    orders: await getRecentOrders(),
-  }
-}
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: "resync." },
-    { name: "description", content: "dashboard" },
-  ];
-};
