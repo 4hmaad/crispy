@@ -28,7 +28,7 @@ export default function Index() {
 
   return (
     <>
-      <Heading>Good afternoon, Erica</Heading>
+      {/* <Heading>Good afternoon, Erica</Heading>
       <div className="mt-8 flex items-end justify-between">
         <Subheading>Overview</Subheading>
         <div>
@@ -73,9 +73,9 @@ export default function Index() {
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+      </Table> */}
     </>
-  )
+  );
 }
 
 export const clientLoader = async () => {
