@@ -1,17 +1,17 @@
 import { type ReactNode } from "react";
 
-interface QuestionProps {
-  title: string;
-  description?: string;
+interface QuestionSkeletonProps {
   required?: boolean;
   children: ReactNode;
-  className?: string;
+  elements: {
+    title: ReactNode | string;
+    description?: ReactNode | string;
+  }
 }
 
-export const Question: React.FC<QuestionProps> = ({
-  title,
-  description,
+export const QuestionSkeleton: React.FC<QuestionSkeletonProps> = ({
   required = false,
+  elements,
   children,
 }) => {
   return (
@@ -20,13 +20,13 @@ export const Question: React.FC<QuestionProps> = ({
         <div className="max-w-3xl mx-auto w-full mt-8 mb-12">
           <div className="cursor-default">
             <p className="text-2xl leading-8">
-              {title}
+              {elements.title}
               {required ? '*' : null}
             </p>
           </div>
-          {description ? (
+          {elements?.description ? (
             <div className="text-xl leading-7 text-black/70 mt-2">
-              <p>{description}</p>
+              <p>{elements?.description}</p>
             </div>
           ) : null}
           <div className={`mt-8`}>
