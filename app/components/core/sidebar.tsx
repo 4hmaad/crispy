@@ -38,6 +38,7 @@ import {
   SparklesIcon,
   Square2StackIcon,
   TicketIcon,
+  UserGroupIcon,
 } from '@heroicons/react/20/solid'
 
 export function AppSidebar() {
@@ -103,6 +104,10 @@ export function AppSidebar() {
           <SidebarItem href="/broadcasts">
             <MegaphoneIcon />
             <SidebarLabel>Broadcasts</SidebarLabel>
+          </SidebarItem>
+          <SidebarItem href="/s">
+            <UserGroupIcon />
+            <SidebarLabel>Respondents</SidebarLabel>
           </SidebarItem>
         </SidebarSection>
         <SidebarSection className="max-lg:hidden">

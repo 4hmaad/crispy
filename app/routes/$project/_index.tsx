@@ -6,7 +6,7 @@ import { Divider } from '@/components/ui//divider'
 import { Heading, Subheading } from '@/components/ui//heading'
 import { Select } from '@/components/ui//select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui//table'
-import { getRecentOrders } from '@/data'
+import { getRecentOrders } from './data'
 import { useLoaderData } from "@remix-run/react";
 
 function Stat({ title, value, change }: { title: string; value: string; change: string }) {
